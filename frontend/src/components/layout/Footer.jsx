@@ -1,4 +1,3 @@
-
 const Footer = () => {
   return (
     <footer className="bg-white border-t border-slate-100 pt-16 pb-8">
@@ -52,15 +51,15 @@ const Footer = () => {
             <h3 className="font-bold text-slate-900 mb-4">Contact Info</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-slate-500">
-                <MapPin size={20} className="text-primary shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 stroke-current text-primary shrink-0 mt-0.5" />
                 <span>123 Culinary Avenue,<br />Foodie City, FC 12345</span>
               </li>
               <li className="flex items-center gap-3 text-slate-500">
-                <Phone size={20} className="text-primary shrink-0" />
+                <Phone className="w-5 h-5 stroke-current text-primary shrink-0" />
                 <span>+1 (234) 567-8900</span>
               </li>
               <li className="flex items-center gap-3 text-slate-500">
-                <Mail size={20} className="text-primary shrink-0" />
+                <Mail className="w-5 h-5 stroke-current text-primary shrink-0" />
                 <span>hello@foodfest.com</span>
               </li>
             </ul>

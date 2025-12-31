@@ -1,6 +1,6 @@
-import { ArrowRight, Star, Users, Utensils } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import Button from '../ui/Button';
+import { ArrowRight, Star, Utensils } from "lucide-react";
+import { Link } from "react-router-dom";
+import Button from "../ui/Button";
 
 const Hero = () => {
   return (
@@ -16,31 +16,40 @@ const Hero = () => {
               <Star className="w-4 h-4 fill-primary" />
               <span>Le meilleur festival culinaire de l'année</span>
             </div>
-            
+
             <h1 className="text-6xl md:text-7xl font-black text-slate-900 leading-tight">
-              Savourez chaque <span className="text-primary italic">instant</span> de délice
+              Savourez chaque{" "}
+              <span className="text-primary italic">instant</span> de délice
             </h1>
-            
+
             <p className="text-xl text-slate-500 font-medium max-w-lg mx-auto lg:mx-0">
-              Découvrez une sélection unique de plats artisanaux préparés par nos chefs étoilés spécialement pour le FoodFest.
+              Découvrez une sélection unique de plats artisanaux préparés par
+              nos chefs étoilés spécialement pour le FoodFest.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
               <Link to="/menu">
-                <Button size="lg" className="h-16 px-10 rounded-2xl shadow-2xl shadow-primary/20 group">
+                <Button
+                  size="lg"
+                  className="h-16 px-10 rounded-2xl shadow-2xl shadow-primary/20 group"
+                >
                   Explorer le Menu
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
               <Link to="/about">
-                <Button variant="secondary" size="lg" className="h-16 px-10 rounded-2xl">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="h-16 px-10 rounded-2xl"
+                >
                   En savoir plus
                 </Button>
               </Link>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-slate-100">
+            {/* <div className="grid grid-cols-3 gap-8 pt-8 border-t border-slate-100">
               <div className="text-center lg:text-left">
                 <div className="text-3xl font-black text-slate-900">50+</div>
                 <div className="text-sm font-bold text-slate-400">Plats</div>
@@ -53,39 +62,47 @@ const Hero = () => {
                 <div className="text-3xl font-black text-slate-900">15+</div>
                 <div className="text-sm font-bold text-slate-400">Chefs</div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Hero Image */}
           <div className="mt-16 lg:mt-0 relative">
             <div className="relative rounded-[40px] overflow-hidden shadow-2xl rotate-2">
-              <img 
-                src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop" 
+              <img
+                src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop"
                 alt="Delicious Food"
                 className="w-full object-cover aspect-square sm:aspect-video lg:aspect-square"
               />
             </div>
-            
+
             {/* Floating UI Elements */}
             <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-3xl shadow-xl flex items-center space-x-4 animate-in fade-in slide-in-from-left duration-1000">
-               <div className="bg-green-100 p-2 rounded-2xl">
-                  <Utensils className="w-6 h-6 text-green-600" />
-               </div>
-               <div>
-                  <div className="text-sm font-black text-slate-900">Ingrédients Frais</div>
-                  <div className="text-xs font-bold text-slate-400">Qualité Premium</div>
-               </div>
+              <div className="bg-green-100 p-2 rounded-2xl">
+                <Utensils className="w-6 h-6 text-green-600" />
+              </div>
+              <div>
+                <div className="text-sm font-black text-slate-900">
+                  Ingrédients Frais
+                </div>
+                <div className="text-xs font-bold text-slate-400">
+                  Qualité Premium
+                </div>
+              </div>
             </div>
 
-            <div className="absolute top-10 -right-6 bg-white p-4 rounded-3xl shadow-xl flex items-center space-x-4 animate-in fade-in slide-in-from-right duration-1000">
-               <div className="bg-blue-100 p-2 rounded-2xl">
-                  <Users className="w-6 h-6 text-blue-600" />
-               </div>
-               <div>
-                  <div className="text-sm font-black text-slate-900">12k+ Heureux</div>
-                  <div className="text-xs font-bold text-slate-400">Cette semaine</div>
-               </div>
-            </div>
+            {/* <div className="absolute top-10 -right-6 bg-white p-4 rounded-3xl shadow-xl flex items-center space-x-4 animate-in fade-in slide-in-from-right duration-1000">
+              <div className="bg-blue-100 p-2 rounded-2xl">
+                <Users className="w-6 h-6 text-blue-600" />
+              </div>
+              <div>
+                <div className="text-sm font-black text-slate-900">
+                  12k+ Heureux
+                </div>
+                <div className="text-xs font-bold text-slate-400">
+                  Cette semaine
+                </div>
+              </div>
+            </div> */}
           </div>
         </div>
       </div>
