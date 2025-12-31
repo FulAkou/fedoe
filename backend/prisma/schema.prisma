@@ -1,0 +1,147 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  STAFF
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PREPARING
+  READY
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id        String @id @default(cuid())
+  name      String
+  email     String @unique
+  password  String
+  telephone String @unique
+  role      Role   @default(USER)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  dishes        Dish[]
+  reviews       Review[]
+  orders        Order[]
+  reviewReplies ReviewReply[]
+
+  @@index([email])
+  @@index([role])
+}
+
+model Dish {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  imageUrl    String
+  price       Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  reviews Review[]
+  items   OrderItem[]
+  user    User?       @relation(fields: [userId], references: [id])
+  userId  String?
+
+  @@index([name])
+}
+
+model Review {
+  id        String       @id @default(cuid())
+  rating    Int          @db.SmallInt
+  comment   String
+  status    ReviewStatus @default(PENDING)
+  featured  Boolean      @default(false)
+  likes     Int          @default(0)
+  dislikes  Int          @default(0)
+  userId    String
+  dishId    String
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  // Relations
+  user    User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dish    Dish          @relation(fields: [dishId], references: [id], onDelete: Cascade)
+  replies ReviewReply[]
+
+  @@index([userId])
+  @@index([dishId])
+  @@index([status])
+  @@index([featured])
+}
+
+model ReviewReply {
+  id        String   @id @default(cuid())
+  content   String
+  reviewId  String
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  review Review @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([reviewId])
+  @@index([userId])
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  userId        String
+  secretCode    String      @unique
+  total         Float
+  seats         Int         @default(1)
+  status        OrderStatus @default(PENDING)
+  paymentMethod String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  // Relations
+  user  User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items OrderItem[]
+
+  @@index([userId])
+  @@index([secretCode])
+  @@index([status])
+}
+
+model OrderItem {
+  id       String @id @default(cuid())
+  orderId  String
+  dishId   String
+  quantity Int
+  price    Float
+
+  // Relations
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  dish  Dish  @relation(fields: [dishId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([dishId])
+}
